@@ -19,7 +19,7 @@
     "sync": "factory sync"
   },
   "devDependencies": {
-    "@acme/presets": "github:QuyLX/acme-policy#2abc39f0e3c23454e6b5132192e7a1fd8589e3b2&path:presets",
+    "@acme/presets": "github:QuyLX/acme-policy#02c4daafcba6dcaea73297f8eb558a169ff7e88f&path:presets",
     "@platform/factory-cli": "workspace:*",
     "@types/node": "26.6.6",
     "eslint": "10.15.0",

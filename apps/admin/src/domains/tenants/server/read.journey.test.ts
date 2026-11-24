@@ -9,7 +9,7 @@ const knownId = '0b9e2f4c-1d1a-4a49-9a51-2f2c3d6e7a10';
 
 beforeAll(() => {
   process.env.TENANTS_BASE_URL = base;
-  server.listen({ onUnhandledRequest: 'error' });
+  server.listen({ onUnhandledFrame: 'error' });
 });
 afterAll(() => server.close());
 

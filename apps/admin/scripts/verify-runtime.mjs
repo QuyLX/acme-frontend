@@ -7,13 +7,6 @@ const app = dirname(dirname(fileURLToPath(import.meta.url)));
 const node = process.execPath;
 const nodeOpts = ['--conditions=react-server', '--experimental-strip-types'];
 
-function run(args, cwd) {
-  return new Promise((resolve) => {
-    const child = spawn(node, args, { cwd, stdio: 'inherit' });
-    child.on('exit', (code) => resolve(code ?? 1));
-  });
-}
-
 const journey = await new Promise((resolve) => {
   const child = spawn('pnpm', ['exec', 'vitest', 'run', 'src/domains/tenants/server/read.journey.test.ts'], { cwd: app, stdio: 'inherit' });
   child.on('exit', (code) => resolve(code ?? 1));
