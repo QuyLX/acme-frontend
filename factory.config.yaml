@@ -6,6 +6,12 @@ kind: FactoryProjectConfig
 projects:
   admin:
     kind: next-app
+    typescript:
+      paths:
+        "@admin/tenants": ["./src/domains/tenants/index.ts"]
+    test:
+      environment: node
+      conditions: [react-server]
   console:
     kind: next-app
   "@platform/ds-react":

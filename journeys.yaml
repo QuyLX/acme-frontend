@@ -1,0 +1,15 @@
+# Journey registry for the pilot surface (FE §7.7). Control file: editing an acceptance line is an oracle change.
+- id: admin/tenants.list
+  surface: admin/tenants
+  owner: team-admin
+  criticality: high
+  personas: [staff, no-access]
+  permissions: [tenants.read]
+  scenarios:
+    - { id: happy, ac: [AC-TN-1] }
+    - { id: permission-denied, ac: [AC-TN-2] }
+    - { id: not-found, ac: [AC-TN-3] }
+  acceptance:
+    - { id: AC-TN-1, statement: "A staff session sees the synthetic tenant list and can open a tenant detail" }
+    - { id: AC-TN-2, statement: "A session with no access sees a denial and no tenant row" }
+    - { id: AC-TN-3, statement: "An unknown tenant id shows not-found and no tenant fields" }

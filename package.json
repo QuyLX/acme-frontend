@@ -14,6 +14,7 @@
     "graph": "nx graph",
     "verify:fast": "factory verify:fast",
     "verify": "factory verify",
+    "verify:runtime": "factory verify:runtime",
     "factory": "factory",
     "sync": "factory sync"
   },

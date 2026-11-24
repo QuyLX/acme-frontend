@@ -14,7 +14,7 @@ separate policy repo `acme-policy` and cannot be changed from here.
 - Build / lint / type check: `pnpm build` · `pnpm lint` · `pnpm typecheck`
 - Conformance and drift: `pnpm factory doctor`
 - Config: edit `factory.config.yaml`, then `pnpm sync`; never hand-edit generated `eslint.config.mjs`, `tsconfig.json`, `vitest.config.ts` or `.factory/kit/**` (FE-CFG-001)
-- Verification before proposing a change: `pnpm verify:fast` · `pnpm verify` (+ build, lockfile, dependency policy). The checks each command runs are defined by the policy repo (`acme-policy/registry/commands.yaml`). `policy.sod` runs in the mandatory pipeline on PR events (`FACTORY_SOD_INPUT=<file>` runs it locally)
+- Verification before proposing a change: `pnpm verify:fast` · `pnpm verify` (+ build, lockfile, dependency policy) · `pnpm verify:runtime` (boots Admin and checks `admin/tenants`). The checks `verify:fast` and `verify` run are defined by the policy repo (`acme-policy/registry/commands.yaml`). `policy.sod` runs in the mandatory pipeline on PR events (`FACTORY_SOD_INPUT=<file>` runs it locally)
 
 ## Architecture map
 - Layout and module boundaries: `README.md`

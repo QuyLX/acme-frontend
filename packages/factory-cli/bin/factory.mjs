@@ -129,6 +129,15 @@ function sync(args) {
   return r.status ?? 2;
 }
 
+function verifyRuntime() {
+  const r = spawnSync(process.execPath, ['apps/admin/scripts/verify-runtime.mjs'], { cwd: repo, stdio: 'inherit' });
+  if (r.error) {
+    console.error(r.error.message);
+    return 2;
+  }
+  return r.status ?? 2;
+}
+
 function passthrough(args) {
   if (!existsSync(policyBin)) {
     console.error(`✗ policy repo not found at ${policyDir} (set FACTORY_POLICY_DIR)`);
@@ -146,5 +155,6 @@ const code =
   : command === 'sync' ? sync(process.argv.slice(3))
   : command === 'generate' ? passthrough(['generate', ...process.argv.slice(3), '--repo', repo])
   : command === 'verify:fast' || command === 'verify' ? verify(command)
-  : (console.log('Usage: factory <doctor | sync [--check] | generate <package|ds-component> <name> [...] | verify:fast | verify>'), command ? 2 : 0);
+  : command === 'verify:runtime' ? verifyRuntime()
+  : (console.log('Usage: factory <doctor | sync [--check] | generate <package|ds-component> <name> [...] | verify:fast | verify | verify:runtime>'), command ? 2 : 0);
 process.exitCode = code;

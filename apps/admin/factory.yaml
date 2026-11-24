@@ -9,16 +9,27 @@ owner: team-admin              # placeholder team id until owner identities are 
 backupOwners: [team-platform] # CORE-KNW-03: ≥ 2 eligible owners or a named backup
 lifecycle: active
 platform: { channel: stable }
-surfaces: []                  # pending D-12 (demo modules)
+surfaces:
+  - id: admin/tenants
+    owner: team-admin
+    backupOwner: team-platform
+    paths:
+      - "apps/admin/src/domains/tenants/**"
+      - "apps/admin/src/app/tenants/**"
+    routes: ["/tenants", "/tenants/:tenantId"]
+    rendering: authenticated
+    archetypes: [operational]
+    profiles: ["x:privileged-admin"]
+    criticality: high
 contracts:
-  consumes: []                # pending D-04 (contract format)
+  consumes: ["openapi:tenants@1.0.0"]
 promptAssets: []
 autonomy:
   zeroHumanOptIn: []          # A0 MUST NOT be enabled in pilot mode (Standard §20.8 item 4.7)
   aiReviewMode: {}
-# Deterministic path → tier map (policy.risk; Standard §20.8 item 4). Only what FE §10.1 mandates is declared: the
-# x:privileged-admin floor and the privileged path names. Tiers for other paths wait for D-12 (surfaces); until then
-# every path outside this app stays unmatched = High (Standard §9.5 rule 4). Removing an entry is loosening.
+# Deterministic path → tier map (policy.risk; Standard §20.8 item 4). The R2 floor covers every Admin path.
+# The tenants slice is R3 because it reads across tenants (D-07, D-12). Unmatched paths outside this app are High.
+# Removing an entry is loosening.
 riskMap:
   - paths: ["apps/admin/**"]
     tier: Medium
@@ -32,6 +43,13 @@ riskMap:
     tier: High
     subTier: R3
     reason: "privileged path: impersonation, cross-tenant/bulk, step-up, break-glass, PII reveal, export, audit events, server-side session/authorization"
+    source: "FE §10.1"
+  - paths:
+      - "apps/admin/src/domains/tenants/**"
+      - "apps/admin/src/app/tenants/**"
+    tier: High
+    subTier: R3
+    reason: "cross-tenant read: staff lists and opens tenant records outside one customer tenant (D-07, D-12)"
     source: "FE §10.1"
 # Admin is x:privileged-admin: R2 floor for every change; privileged paths (impersonation, cross-tenant/bulk,
 # step-up auth, break-glass, PII reveal, export, audit events, server-side session/authorization) are R3 (FE §10).
