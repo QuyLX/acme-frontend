@@ -5,6 +5,6 @@ on:
     branches: [main]
 jobs:
   verify:
-    uses: QuyLX/acme-policy/.github/workflows/verify.yml@d8f234b3ee01e074ee31ba7bb116cd68dbb407a3
+    uses: QuyLX/acme-policy/.github/workflows/verify.yml@2abc39f0e3c23454e6b5132192e7a1fd8589e3b2
     with:
       head_sha: ${{ github.sha }}
