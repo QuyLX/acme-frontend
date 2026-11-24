@@ -1,0 +1,10 @@
+name: verify
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  verify:
+    uses: QuyLX/acme-policy/.github/workflows/verify.yml@d8f234b3ee01e074ee31ba7bb116cd68dbb407a3
+    with:
+      head_sha: ${{ github.sha }}
