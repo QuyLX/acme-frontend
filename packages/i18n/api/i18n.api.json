@@ -1,0 +1,53 @@
+{
+  "createFormatters": {
+    "kind": "value"
+  },
+  "createRequestConfig": {
+    "kind": "value"
+  },
+  "defaultLocale": {
+    "kind": "value"
+  },
+  "FormatterOptions": {
+    "kind": "type",
+    "type": "FormatterOptions"
+  },
+  "formatters": {
+    "kind": "value"
+  },
+  "Formatters": {
+    "kind": "type",
+    "type": "Formatters"
+  },
+  "isLocale": {
+    "kind": "value"
+  },
+  "loadMessages": {
+    "kind": "value"
+  },
+  "Locale": {
+    "kind": "type",
+    "type": "\"vi\" | \"en\""
+  },
+  "locales": {
+    "kind": "value"
+  },
+  "MessageLoader": {
+    "kind": "type",
+    "type": "(locale: \"vi\" | \"en\") => Promise<AbstractIntlMessages>"
+  },
+  "MissingKey": {
+    "kind": "type",
+    "type": "MissingKey"
+  },
+  "missingKeys": {
+    "kind": "value"
+  },
+  "RequestConfigOptions": {
+    "kind": "type",
+    "type": "RequestConfigOptions"
+  },
+  "resolveLocale": {
+    "kind": "value"
+  }
+}

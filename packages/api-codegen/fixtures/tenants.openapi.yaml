@@ -1,0 +1,94 @@
+# Fixture contract for @platform/api-codegen (D-22: tenants & users). Synthetic: not a product contract.
+openapi: 3.1.0
+info: { title: Tenants (fixture), version: 1.0.0 }
+paths:
+  /v1/tenants:
+    get:
+      operationId: listTenants
+      parameters:
+        - { name: cursor, in: query, required: false, schema: { type: string } }
+        - { name: pageSize, in: query, required: false, schema: { type: integer } }
+      responses:
+        '200': { description: A page of tenants, content: { application/json: { schema: { $ref: '#/components/schemas/TenantPage' } } } }
+      x-scenarios:
+        default: { status: 200, body: { items: [{ id: 0b9e2f4c-1d1a-4a49-9a51-2f2c3d6e7a10, name: Northwind Synthetic, status: active, createdAt: '2026-01-15T09:00:00Z' }], nextCursor: null } }
+        empty: { status: 200, body: { items: [], nextCursor: null } }
+  /v1/tenants/{tenantId}:
+    get:
+      operationId: getTenant
+      parameters: [{ name: tenantId, in: path, required: true, schema: { type: string, format: uuid } }]
+      responses:
+        '200': { description: The tenant, content: { application/json: { schema: { $ref: '#/components/schemas/Tenant' } } } }
+        '404': { description: Not found, content: { application/problem+json: { schema: { $ref: '#/components/schemas/Problem' } } } }
+      x-scenarios:
+        default: { status: 200, body: { id: 0b9e2f4c-1d1a-4a49-9a51-2f2c3d6e7a10, name: Northwind Synthetic, status: active, createdAt: '2026-01-15T09:00:00Z' } }
+        notFound: { status: 404, body: { type: 'about:blank', title: Tenant not found, status: 404 } }
+  /v1/tenants/{tenantId}/users:
+    get:
+      operationId: listUsers
+      parameters:
+        - { name: tenantId, in: path, required: true, schema: { type: string, format: uuid } }
+        - { name: status, in: query, required: false, schema: { $ref: '#/components/schemas/UserStatus' } }
+      responses:
+        '200': { description: A page of users, content: { application/json: { schema: { $ref: '#/components/schemas/UserPage' } } } }
+      x-scenarios:
+        default: { status: 200, body: { items: [{ id: 6f1d1a52-8c2e-4c1b-9a77-0c5a1b2d3e4f, tenantId: 0b9e2f4c-1d1a-4a49-9a51-2f2c3d6e7a10, email: ada@example.invalid, displayName: Ada Example, role: admin, status: active }], nextCursor: null } }
+    post:
+      operationId: createUser
+      parameters: [{ name: tenantId, in: path, required: true, schema: { type: string, format: uuid } }]
+      requestBody: { required: true, content: { application/json: { schema: { $ref: '#/components/schemas/NewUser' } } } }
+      responses:
+        '201': { description: Created, content: { application/json: { schema: { $ref: '#/components/schemas/User' } } } }
+        '422': { description: Invalid, content: { application/problem+json: { schema: { $ref: '#/components/schemas/Problem' } } } }
+      x-scenarios:
+        default: { status: 201, body: { id: 2a3b4c5d-6e7f-4a1b-8c9d-0e1f2a3b4c5d, tenantId: 0b9e2f4c-1d1a-4a49-9a51-2f2c3d6e7a10, email: grace@example.invalid, displayName: Grace Example, role: member, status: invited } }
+        emailTaken: { status: 422, body: { type: 'about:blank', title: Email already used, status: 422 } }
+components:
+  schemas:
+    TenantStatus: { type: string, enum: [active, suspended] }
+    Tenant:
+      type: object
+      required: [id, name, status, createdAt]
+      properties:
+        id: { type: string, format: uuid, x-data-class: internal }
+        name: { type: string, x-data-class: internal }
+        status: { $ref: '#/components/schemas/TenantStatus' }
+        createdAt: { type: string, format: date-time, x-data-class: internal }
+    TenantPage:
+      type: object
+      required: [items, nextCursor]
+      properties:
+        items: { type: array, items: { $ref: '#/components/schemas/Tenant' } }
+        nextCursor: { type: [string, 'null'], x-data-class: internal }
+    UserStatus: { type: string, enum: [invited, active, disabled] }
+    UserRole: { type: string, enum: [owner, admin, member] }
+    User:
+      type: object
+      required: [id, tenantId, email, displayName, role, status]
+      properties:
+        id: { type: string, format: uuid, x-data-class: internal }
+        tenantId: { type: string, format: uuid, x-data-class: internal }
+        email: { type: string, format: email, x-data-class: personal }
+        displayName: { type: string, x-data-class: personal }
+        role: { $ref: '#/components/schemas/UserRole' }
+        status: { $ref: '#/components/schemas/UserStatus' }
+    UserPage:
+      type: object
+      required: [items, nextCursor]
+      properties:
+        items: { type: array, items: { $ref: '#/components/schemas/User' } }
+        nextCursor: { type: [string, 'null'], x-data-class: internal }
+    NewUser:
+      type: object
+      required: [email, displayName, role]
+      properties:
+        email: { type: string, format: email, x-data-class: personal }
+        displayName: { type: string, x-data-class: personal }
+        role: { $ref: '#/components/schemas/UserRole' }
+    Problem:
+      type: object
+      properties:
+        type: { type: string, x-data-class: public }
+        title: { type: string, x-data-class: public }
+        status: { type: integer, x-data-class: public }
+        detail: { type: string, x-data-class: public }

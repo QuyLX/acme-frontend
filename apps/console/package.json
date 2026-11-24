@@ -1,0 +1,36 @@
+{
+  "name": "console",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --port 3000",
+    "build": "next build",
+    "start": "next start --port 3000",
+    "lint": "eslint .",
+    "typecheck": "next typegen && tsc --noEmit"
+  },
+  "dependencies": {
+    "@platform/ds-icons": "workspace:*",
+    "@platform/ds-react": "workspace:*",
+    "@platform/ds-tokens": "workspace:*",
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.5",
+    "@types/node": "26.6.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "10.15.0",
+    "tailwindcss": "4.3.5",
+    "typescript": "6.0.3"
+  },
+  "nx": {
+    "tags": [
+      "scope:console",
+      "type:app"
+    ]
+  }
+}

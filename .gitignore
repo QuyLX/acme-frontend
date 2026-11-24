@@ -1,0 +1,16 @@
+node_modules/
+.next/
+out/
+coverage/
+.nx/cache/
+.nx/workspace-data/
+*.tsbuildinfo
+next-env.d.ts
+.env*.local
+.DS_Store
+
+# Verifier temp files (acme-policy tool adapters), removed after each run
+tsconfig.factory-verify.json
+vitest.factory-verify.config.mjs
+.vitest/
+vitest.browser.factory-verify.config.mjs

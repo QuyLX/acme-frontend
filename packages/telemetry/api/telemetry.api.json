@@ -1,0 +1,44 @@
+{
+  "BASE_DATA_CLASSES": {
+    "kind": "value"
+  },
+  "DataClass": {
+    "kind": "type",
+    "type": "\"public\" | \"internal\" | \"personal\" | \"sensitive\""
+  },
+  "EMAIL_MASK": {
+    "kind": "value"
+  },
+  "EMITTABLE_DATA_CLASSES": {
+    "kind": "value"
+  },
+  "FORBIDDEN_KEY_SUFFIXES": {
+    "kind": "value"
+  },
+  "getLogger": {
+    "kind": "value"
+  },
+  "isEmittable": {
+    "kind": "value"
+  },
+  "isForbiddenKey": {
+    "kind": "value"
+  },
+  "LoggerOptions": {
+    "kind": "type",
+    "type": "LoggerOptions"
+  },
+  "maskFreeText": {
+    "kind": "value"
+  },
+  "PlatformLogger": {
+    "kind": "type",
+    "type": "PlatformLogger"
+  },
+  "redact": {
+    "kind": "value"
+  },
+  "TOKEN_MASK": {
+    "kind": "value"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@platform/ds-icons",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Typed SVG icons used by the Design System (FE §5.1 Foundation tier). Decorative by default; a label makes an icon an image.",
+  "exports": { ".": "./src/index.ts" },
+  "scripts": { "test": "vitest run", "typecheck": "tsc --noEmit", "lint": "eslint ." },
+  "peerDependencies": { "react": "^19.3.1" },
+  "devDependencies": {
+    "@testing-library/react": "16.3.3",
+    "@types/node": "26.6.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.3.0",
+    "axe-core": "4.14.1",
+    "eslint": "10.15.0",
+    "jsdom": "31.0.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "typescript": "6.0.3",
+    "vite": "8.3.8",
+    "vitest": "5.1.1"
+  },
+  "nx": { "tags": ["scope:shared", "type:lib"] }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "@platform/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Server layer: request context, service fetch with timeouts and circuit breaker, mutation wrapper, tenant-scoped cache (FE §3.5). Auth is an interface only (D-03 deferred).",
+  "exports": {
+    ".": "./src/index.ts",
+    "./keys": "./src/keys.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "server-only": "0.0.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.6",
+    "eslint": "10.15.0",
+    "typescript": "6.0.3",
+    "vitest": "5.1.1"
+  },
+  "nx": {
+    "tags": [
+      "scope:shared",
+      "type:lib"
+    ]
+  }
+}

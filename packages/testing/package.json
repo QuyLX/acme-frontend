@@ -1,0 +1,46 @@
+{
+  "name": "@platform/testing",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Shared test harness: render with providers, MSW server, synthetic builders, persona sessions, axe matcher (FE §4.1 Testing Platform).",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@platform/server": "workspace:*",
+    "@tanstack/react-query": "5.108.4",
+    "axe-core": "4.14.1",
+    "msw": "3.0.7"
+  },
+  "peerDependencies": {
+    "react": "^19.3.1",
+    "@testing-library/react": "^16.3.3",
+    "vitest": "^5.1.1"
+  },
+  "devDependencies": {
+    "@testing-library/react": "16.3.3",
+    "@types/node": "26.6.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.3.0",
+    "eslint": "10.15.0",
+    "jsdom": "31.0.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "typescript": "6.0.3",
+    "vite": "8.3.8",
+    "vitest": "5.1.1"
+  },
+  "nx": {
+    "tags": [
+      "scope:shared",
+      "type:lib"
+    ]
+  }
+}

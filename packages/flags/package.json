@@ -1,0 +1,32 @@
+{
+  "name": "@platform/flags",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "OpenFeature adapter with a flag registry: owner, default, fallback, safeState, expiry (FE-FLAG-001, §11.4).",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@openfeature/core": "1.12.0",
+    "@openfeature/server-sdk": "1.23.0",
+    "yaml": "2.9.1"
+  },
+  "devDependencies": {
+    "@types/node": "26.6.6",
+    "eslint": "10.15.0",
+    "typescript": "6.0.3",
+    "vitest": "5.1.1"
+  },
+  "nx": {
+    "tags": [
+      "scope:shared",
+      "type:lib"
+    ]
+  }
+}

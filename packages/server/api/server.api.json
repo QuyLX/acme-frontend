@@ -1,0 +1,90 @@
+{
+  "Actor": {
+    "kind": "type",
+    "type": "Actor"
+  },
+  "AuditEvent": {
+    "kind": "type",
+    "type": "AuditEvent"
+  },
+  "Breaker": {
+    "kind": "type",
+    "type": "Breaker"
+  },
+  "CacheBackend": {
+    "kind": "type",
+    "type": "CacheBackend"
+  },
+  "cachedForTenant": {
+    "kind": "value"
+  },
+  "CircuitOpenError": {
+    "kind": "value"
+  },
+  "contextFromSession": {
+    "kind": "value"
+  },
+  "createBreaker": {
+    "kind": "value"
+  },
+  "createMemoryCacheBackend": {
+    "kind": "value"
+  },
+  "createServiceFetch": {
+    "kind": "value"
+  },
+  "createTestSessionProvider": {
+    "kind": "value"
+  },
+  "defineMutation": {
+    "kind": "value"
+  },
+  "MutationDeps": {
+    "kind": "type",
+    "type": "MutationDeps"
+  },
+  "MutationResult": {
+    "kind": "type",
+    "type": "{ ok: true; data: O; } | { ok: false; error: { code: \"unauthenticated\" | \"forbidden\" | \"invalid-origin\" | \"invalid-input\" | \"failed\"; message: string; fields?: Record<string, string> | undefined; }; }"
+  },
+  "newRequestId": {
+    "kind": "value"
+  },
+  "Operation": {
+    "kind": "type",
+    "type": "Operation"
+  },
+  "Problem": {
+    "kind": "type",
+    "type": "Problem"
+  },
+  "RequestContext": {
+    "kind": "type",
+    "type": "RequestContext"
+  },
+  "ServiceCall": {
+    "kind": "type",
+    "type": "<T>(ctx: RequestContext, op: Operation, parse: (raw: unknown) => T) => Promise<T>"
+  },
+  "ServiceError": {
+    "kind": "value"
+  },
+  "ServiceFetchOptions": {
+    "kind": "type",
+    "type": "ServiceFetchOptions"
+  },
+  "Session": {
+    "kind": "type",
+    "type": "Session"
+  },
+  "SessionProvider": {
+    "kind": "type",
+    "type": "SessionProvider"
+  },
+  "tenantQueryKey": {
+    "kind": "value"
+  },
+  "tenantTag": {
+    "kind": "value"
+  }
+}

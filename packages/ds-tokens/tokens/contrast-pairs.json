@@ -1,0 +1,22 @@
+{
+  "$description": "Semantic color pairs checked automatically for every theme (FE §5.2). minRatio: 4.5 text, 3 non-text (WCAG 2.2 AA 1.4.3, 1.4.11).",
+  "pairs": [
+    { "fg": "fg.default", "bg": "canvas", "minRatio": 4.5 },
+    { "fg": "fg.default", "bg": "surface", "minRatio": 4.5 },
+    { "fg": "fg.default", "bg": "subtle", "minRatio": 4.5 },
+    { "fg": "fg.muted", "bg": "canvas", "minRatio": 4.5 },
+    { "fg": "fg.muted", "bg": "surface", "minRatio": 4.5 },
+    { "fg": "fg.on-accent", "bg": "accent.default", "minRatio": 4.5 },
+    { "fg": "fg.on-accent", "bg": "accent.hover", "minRatio": 4.5 },
+    { "fg": "fg.on-accent", "bg": "danger.default", "minRatio": 4.5 },
+    { "fg": "fg.on-accent", "bg": "danger.hover", "minRatio": 4.5 },
+    { "fg": "danger.text", "bg": "surface", "minRatio": 4.5 },
+    { "fg": "danger.text", "bg": "danger.subtle", "minRatio": 4.5 },
+    { "fg": "success.text", "bg": "success.subtle", "minRatio": 4.5 },
+    { "fg": "warning.text", "bg": "warning.subtle", "minRatio": 4.5 },
+    { "fg": "info.text", "bg": "info.subtle", "minRatio": 4.5 },
+    { "fg": "border.strong", "bg": "surface", "minRatio": 3 },
+    { "fg": "focus", "bg": "surface", "minRatio": 3 },
+    { "fg": "focus", "bg": "canvas", "minRatio": 3 }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "assertFlagRegistry": {
+    "kind": "value"
+  },
+  "createFlags": {
+    "kind": "value"
+  },
+  "FlagDefinition": {
+    "kind": "type",
+    "type": "FlagDefinition"
+  },
+  "FlagDefinitionInput": {
+    "kind": "type",
+    "type": "{ key?: unknown; owner?: unknown; default?: unknown; fallback?: unknown; safeState?: unknown; expires?: unknown; gatesSecuritySensitive?: unknown; }"
+  },
+  "FlagRegistryError": {
+    "kind": "value"
+  },
+  "Flags": {
+    "kind": "type",
+    "type": "Flags"
+  },
+  "isIsoDate": {
+    "kind": "value"
+  },
+  "loadFlagRegistry": {
+    "kind": "value"
+  },
+  "OpenFeatureClient": {
+    "kind": "type",
+    "type": "{ getBooleanDetails: (flagKey: string, defaultValue: boolean, context?: EvaluationContext | undefined, options?: FlagEvaluationOptions | undefined) => Promise<EvaluationDetails<boolean>>; }"
+  },
+  "UnregisteredFlagError": {
+    "kind": "value"
+  },
+  "validateFlagRegistry": {
+    "kind": "value"
+  }
+}

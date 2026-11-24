@@ -1,0 +1,12 @@
+{
+  "generate": {
+    "kind": "value"
+  },
+  "OpenAPI31Document": {
+    "kind": "type",
+    "type": "OpenAPI31Document"
+  },
+  "UnsupportedOpenApiError": {
+    "kind": "value"
+  }
+}

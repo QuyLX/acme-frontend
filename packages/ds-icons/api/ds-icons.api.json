@@ -1,0 +1,79 @@
+{
+  "IconCheck": {
+    "kind": "value"
+  },
+  "IconChevronDown": {
+    "kind": "value"
+  },
+  "IconChevronRight": {
+    "kind": "value"
+  },
+  "IconChevronUp": {
+    "kind": "value"
+  },
+  "IconClose": {
+    "kind": "value"
+  },
+  "IconDanger": {
+    "kind": "value"
+  },
+  "IconEmpty": {
+    "kind": "value"
+  },
+  "IconInfo": {
+    "kind": "value"
+  },
+  "IconMinus": {
+    "kind": "value"
+  },
+  "IconPlacement": {
+    "kind": "type",
+    "type": "\"inline\" | \"leading-text\" | \"stacked\""
+  },
+  "IconPlus": {
+    "kind": "value"
+  },
+  "IconProps": {
+    "kind": "type",
+    "props": {
+      "label": {
+        "optional": true,
+        "type": "string | undefined"
+      },
+      "placement": {
+        "optional": true,
+        "type": "IconPlacement | undefined"
+      },
+      "size": {
+        "optional": true,
+        "type": "IconSize | undefined"
+      },
+      "tone": {
+        "optional": true,
+        "type": "IconTone | undefined"
+      },
+      "weight": {
+        "optional": true,
+        "type": "IconWeight | undefined"
+      }
+    }
+  },
+  "IconSize": {
+    "kind": "type",
+    "type": "\"xs\" | \"sm\" | \"xl\""
+  },
+  "IconSuccess": {
+    "kind": "value"
+  },
+  "IconTone": {
+    "kind": "type",
+    "type": "\"current\" | \"muted\""
+  },
+  "IconWarning": {
+    "kind": "value"
+  },
+  "IconWeight": {
+    "kind": "type",
+    "type": "\"light\" | \"regular\" | \"bold\""
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "color": {
+    "$type": "color",
+    "canvas": {
+      "$value": "{color.neutral.50}",
+      "$description": "Page background"
+    },
+    "surface": {
+      "$value": "{color.neutral.0}",
+      "$description": "Cards, dialogs, inputs"
+    },
+    "subtle": {
+      "$value": "{color.neutral.100}",
+      "$description": "Hover rows, secondary fills"
+    },
+    "fg": {
+      "default": {
+        "$value": "{color.neutral.900}"
+      },
+      "muted": {
+        "$value": "{color.neutral.600}"
+      },
+      "disabled": {
+        "$value": "{color.neutral.400}"
+      },
+      "on-accent": {
+        "$value": "{color.neutral.0}",
+        "$description": "Text on accent and danger fills"
+      }
+    },
+    "border": {
+      "default": {
+        "$value": "{color.neutral.200}"
+      },
+      "strong": {
+        "$value": "{color.neutral.500}",
+        "$description": "Input borders (non-text contrast \u2265 3:1)"
+      }
+    },
+    "focus": {
+      "$value": "{color.blue.600}",
+      "$description": "Focus ring"
+    },
+    "accent": {
+      "default": {
+        "$value": "{color.blue.600}"
+      },
+      "hover": {
+        "$value": "{color.blue.700}"
+      }
+    },
+    "danger": {
+      "default": {
+        "$value": "{color.red.600}"
+      },
+      "hover": {
+        "$value": "{color.red.700}"
+      },
+      "text": {
+        "$value": "{color.red.700}"
+      },
+      "subtle": {
+        "$value": "{color.red.50}"
+      }
+    },
+    "success": {
+      "text": {
+        "$value": "{color.green.700}"
+      },
+      "subtle": {
+        "$value": "{color.green.50}"
+      }
+    },
+    "warning": {
+      "text": {
+        "$value": "{color.amber.700}"
+      },
+      "subtle": {
+        "$value": "{color.amber.50}"
+      }
+    },
+    "info": {
+      "text": {
+        "$value": "{color.blue.700}"
+      },
+      "subtle": {
+        "$value": "{color.blue.50}"
+      }
+    },
+    "scrim": {
+      "$value": "#0f172a80",
+      "$description": "Overlay behind modal dialogs"
+    }
+  }
+}

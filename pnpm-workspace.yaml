@@ -1,0 +1,25 @@
+packages:
+  - apps/*
+  - packages/*
+allowBuilds:
+  # Install scripts denied explicitly (supply chain): both ship prebuilt platform binaries as optional dependencies.
+  '@parcel/watcher': false
+  '@swc/core': false
+  esbuild: true
+  nx: true
+minimumReleaseAgeExclude:
+  - '@typescript-eslint/eslint-plugin@8.74.0'
+  - '@typescript-eslint/parser@8.74.0'
+  - '@typescript-eslint/project-service@8.74.0'
+  - '@typescript-eslint/scope-manager@8.74.0'
+  - '@typescript-eslint/tsconfig-utils@8.74.0'
+  - '@typescript-eslint/type-utils@8.74.0'
+  - '@typescript-eslint/types@8.74.0'
+  - '@typescript-eslint/typescript-estree@8.74.0'
+  - '@typescript-eslint/utils@8.74.0'
+  - '@typescript-eslint/visitor-keys@8.74.0'
+  - typescript-eslint@8.74.0
+  - '@tanstack/query-core@5.108.4'
+  - '@tanstack/react-query@5.108.4'
+  - icu-minify@4.15.3
+  - next-intl@4.16.0

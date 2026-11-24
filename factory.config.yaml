@@ -1,0 +1,80 @@
+# Project kinds and the only allowed config differences (FE §8.7 item 3, FE-CFG-001; tech-design 03-presets).
+# Control file: every change is classified tighten | neutral | loosen by meta.override-direction.
+# Lint/TS/test config files in each project are GENERATED from this file by `pnpm factory sync`; never edit them.
+apiVersion: aisf/4.0
+kind: FactoryProjectConfig
+projects:
+  admin:
+    kind: next-app
+  console:
+    kind: next-app
+  "@platform/ds-react":
+    kind: react-lib
+    # Public API tracked by ds.api-compat / ds.semver-changelog; budgetKb = measured 115.9 kB gzip (2026-11-24) + ~10%
+    # headroom (Claude's suggestion, owner may change; raising it later is loosening).
+    publicApi: { entry: src/index.ts, snapshot: api/ds-react.api.json, budgetKb: 128 }
+    typescript:
+      types: [node]
+      extraInclude: [".storybook/**/*.ts", ".storybook/**/*.tsx", "vitest.config.ts"]
+    test:
+      environment: jsdom
+      setupFiles: [./test/setup.ts]
+      browser: { tailwind: true, visual: true }   # ds.story-interaction + visual.stories (D-21)
+  "@platform/ds-tokens":
+    kind: node-lib
+    typescript:
+      types: [node]
+      extraInclude: ["dist/*.d.ts"]
+    test:
+      environment: node
+  "@platform/factory-cli":
+    kind: node-tool
+  "@platform/ds-icons":
+    kind: react-lib
+    publicApi: { entry: src/index.ts, snapshot: api/ds-icons.api.json }
+    test:
+      environment: jsdom
+  "@platform/api-codegen":
+    kind: node-lib
+    publicApi: { entry: src/index.ts, snapshot: api/api-codegen.api.json }
+    test:
+      environment: node
+      conditions: [react-server]
+    typescript:
+      types: [node]
+  "@platform/server":
+    kind: node-lib
+    publicApi: { entry: src/index.ts, snapshot: api/server.api.json }
+    test:
+      environment: node
+      conditions: [react-server]
+    typescript:
+      types: [node]
+  "@platform/testing":
+    kind: react-lib
+    publicApi: { entry: src/index.ts, snapshot: api/testing.api.json }
+    test:
+      environment: jsdom
+    typescript:
+      types: [node]
+  "@platform/i18n":
+    kind: react-lib
+    publicApi: { entry: src/index.ts, snapshot: api/i18n.api.json }
+    test:
+      environment: jsdom
+    typescript:
+      types: [node]
+  "@platform/telemetry":
+    kind: node-lib
+    publicApi: { entry: src/index.ts, snapshot: api/telemetry.api.json }
+    test:
+      environment: node
+    typescript:
+      types: [node]
+  "@platform/flags":
+    kind: node-lib
+    publicApi: { entry: src/index.ts, snapshot: api/flags.api.json }
+    test:
+      environment: node
+    typescript:
+      types: [node]

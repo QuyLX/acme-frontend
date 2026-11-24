@@ -1,0 +1,16 @@
+{
+  "name": "@platform/factory-cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Factory CLI v0: standard commands of FE §7.6 (doctor, verify:fast, verify). Delegates schemas and checks to the policy repo.",
+  "bin": {
+    "factory": "./bin/factory.mjs"
+  },
+  "dependencies": {
+    "yaml": "2.9.1"
+  },
+  "nx": {
+    "tags": ["scope:shared", "type:tool"]
+  }
+}

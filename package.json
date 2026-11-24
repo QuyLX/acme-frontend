@@ -1,0 +1,28 @@
+{
+  "name": "acme-frontend",
+  "private": true,
+  "packageManager": "pnpm@12.23.0",
+  "engines": {
+    "node": ">=26.13.0"
+  },
+  "scripts": {
+    "dev:console": "nx run console:dev",
+    "dev:admin": "nx run admin:dev",
+    "build": "nx run-many -t build",
+    "lint": "nx run-many -t lint",
+    "typecheck": "nx run-many -t typecheck",
+    "graph": "nx graph",
+    "verify:fast": "factory verify:fast",
+    "verify": "factory verify",
+    "factory": "factory",
+    "sync": "factory sync"
+  },
+  "devDependencies": {
+    "@acme/presets": "link:../acme-policy/presets",
+    "@platform/factory-cli": "workspace:*",
+    "@types/node": "26.6.6",
+    "eslint": "10.15.0",
+    "nx": "24.0.6",
+    "typescript": "6.0.3"
+  }
+}

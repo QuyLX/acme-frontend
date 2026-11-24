@@ -1,0 +1,20 @@
+# Application descriptor (FE §7.2; one per app in the monorepo — DV-02). Control file (Standard §7.13).
+# apiVersion: Standard Appendix K form; the FE §7.2 spelling "factory/v4" is also accepted until D-13 is decided.
+apiVersion: aisf/4.0
+kind: FactoryConfig
+standard: aisf@4.0.0
+profile: aisf-frontend@1.1.0
+application: console
+owner: team-console              # placeholder team id until owner identities are decided
+backupOwners: [team-platform] # CORE-KNW-03: ≥ 2 eligible owners or a named backup
+lifecycle: active
+platform: { channel: stable }
+surfaces: []                  # pending D-12 (demo modules)
+contracts:
+  consumes: []                # pending D-04 (contract format)
+promptAssets: []
+autonomy:
+  zeroHumanOptIn: []          # A0 MUST NOT be enabled in pilot mode (Standard §20.8 item 4.7)
+  aiReviewMode: {}
+riskMap: []                   # pending D-12; every unmatched path is High (Standard §9.5 rule 4)
+
