@@ -1,2 +1,2 @@
-export { readTenant, readTenantList, sessionFor } from './server/read';
-export type { Persona, TenantDetail, TenantList, TenantRow } from './server/read';
+export { readTenant, readTenantList, requireTenantsRead } from './server/read';
+export type { TenantPage, TenantRow } from './server/read';

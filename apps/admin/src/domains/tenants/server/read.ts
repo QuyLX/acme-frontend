@@ -1,58 +1,47 @@
 import 'server-only';
-import {
-  contextFromSession,
-  createServiceFetch,
-  createTestSessionProvider,
-  ServiceError,
-  type Session,
-} from '@platform/server';
+import { createServiceFetch, ForbiddenError, requirePermission, ServiceError } from '@platform/server';
+import type { Access } from '../../../server/access';
 import { createTenantsClient } from './__generated__/tenants/client';
 
-/** Staff caller scope for the service header. Not a customer tenant id. Replaced when D-03 lands. */
-const STAFF: Session = {
-  actor: { id: 'actor-staff-synthetic', kind: 'user' },
-  tenantId: '00000000-0000-4000-8000-000000000001',
-  expiresAt: '2099-01-01T00:00:00.000Z',
-};
+export type TenantRow = { id: string; name: string; status: 'active' | 'suspended' };
+export type TenantPage = { items: TenantRow[]; nextCursor: string | null };
 
-export type Persona = 'staff' | 'no-access';
+const READ = 'tenants.read';
+let client: ReturnType<typeof createTenantsClient> | null = null;
 
-export function sessionFor(persona: Persona): Session | null {
-  return persona === 'staff' ? STAFF : null;
-}
-
+/** One client per server process, so the per-service circuit breaker sees every request (FE §3.5). */
 function tenants() {
-  const baseUrl = process.env.TENANTS_BASE_URL ?? 'http://127.0.0.1:3099';
-  return createTenantsClient(createServiceFetch({ service: 'tenants', baseUrl, retries: 0 }));
+  if (client) return client;
+  const baseUrl = process.env.TENANTS_BASE_URL;
+  if (!baseUrl) throw new Error('TENANTS_BASE_URL is not set: the tenants service URL is required');
+  client = createTenantsClient(createServiceFetch({ service: 'tenants', baseUrl }));
+  return client;
 }
 
-async function contextFor(persona: Persona) {
-  const session = await createTestSessionProvider(sessionFor(persona)).getSession();
-  if (!session) return null;
-  return contextFromSession(session);
+export function __resetTenantsClientForTests(): void {
+  client = null;
 }
 
-export type TenantRow = { id: string; name: string; status: string };
-
-export type TenantList = { kind: 'denied' } | { kind: 'ok'; items: TenantRow[] };
-
-export async function readTenantList(persona: Persona): Promise<TenantList> {
-  const ctx = await contextFor(persona);
-  if (!ctx) return { kind: 'denied' };
-  const page = await tenants().listTenants(ctx);
-  return { kind: 'ok', items: page.items.map((item) => ({ id: item.id, name: item.name, status: item.status })) };
+/** Authorization in the data-access layer (FE-NEXT-003). No access → ForbiddenError. */
+export async function requireTenantsRead(access: Access | null): Promise<void> {
+  if (!access) throw new ForbiddenError(READ);
+  await requirePermission(access.ctx, access.permissions, READ);
 }
 
-export type TenantDetail = { kind: 'denied' } | { kind: 'not-found' } | { kind: 'ok'; tenant: TenantRow };
+const row = (t: { id: string; name: string; status: 'active' | 'suspended' }): TenantRow => ({ id: t.id, name: t.name, status: t.status });
 
-export async function readTenant(persona: Persona, tenantId: string): Promise<TenantDetail> {
-  const ctx = await contextFor(persona);
-  if (!ctx) return { kind: 'denied' };
+export async function readTenantList(access: Access | null, q: { cursor?: string; pageSize?: number } = {}): Promise<TenantPage> {
+  await requireTenantsRead(access);
+  const page = await tenants().listTenants(access!.ctx, { query: { cursor: q.cursor, pageSize: q.pageSize } });
+  return { items: page.items.map(row), nextCursor: page.nextCursor ?? null };
+}
+
+export async function readTenant(access: Access | null, tenantId: string): Promise<TenantRow | null> {
+  await requireTenantsRead(access);
   try {
-    const tenant = await tenants().getTenant(ctx, { path: { tenantId } });
-    return { kind: 'ok', tenant: { id: tenant.id, name: tenant.name, status: tenant.status } };
+    return row(await tenants().getTenant(access!.ctx, { path: { tenantId } }));
   } catch (err) {
-    if (err instanceof ServiceError && err.status === 404) return { kind: 'not-found' };
+    if (err instanceof ServiceError && err.status === 404) return null;
     throw err;
   }
 }
