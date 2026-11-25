@@ -1,12 +1,5 @@
-import Link from 'next/link';
-import { DsShowcase } from './_demo/ds-showcase';
+import { redirect } from 'next/navigation';
 
-export default function HomePage() {
-  return (
-    <main className="mx-auto flex min-h-screen max-w-3xl flex-col gap-6 p-8">
-      <h1 className="text-2xl font-semibold">Acme Admin</h1>
-      <Link href="/tenants">Tenants</Link>
-      <DsShowcase />
-    </main>
-  );
+export default function Home() {
+  redirect('/tenants');
 }

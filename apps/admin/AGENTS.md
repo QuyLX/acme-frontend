@@ -1,9 +1,10 @@
 # AGENTS.md — admin
 
 - Root guide: `../../AGENTS.md`. Review guide: `REVIEW.md`. Descriptor: `factory.yaml`.
-- Modules live in `src/domains/<domain>/` (FE §4.4); import a module only through its `index.ts`. The pilot module is `src/domains/tenants` (`@admin/tenants`): read-only list and detail. `?persona=no-access` is the session stand-in until D-03.
+- Modules live in `src/domains/<domain>/` (FE §4.4); import a module only through its `index.ts`. The pilot module is `src/domains/tenants` (`@admin/tenants`): read-only list and detail.
 - Server-only code (sessions, contract clients, permission checks) stays in `server/`; client code calls the app's route handlers.
 - Admin is `x:privileged-admin`: no third-party scripts, no session replay, PII masked by default; privileged paths are R3 (FE §6.2, §10).
+- No real session exists until D-03. `ADMIN_SESSION_MODE=fixture` (never in production; the app refuses to start) reads the synthetic persona from cookie `fixture_persona` (`staff` | `no-access`), set by `/fixture/persona?as=<persona>`. Without it every tenants page returns 403. Authorization is checked in the data layer (`requireTenantsRead`), not only in the UI.
 
 <!-- BEGIN:nextjs-agent-rules -->
 
