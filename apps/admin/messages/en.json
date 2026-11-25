@@ -1,0 +1,25 @@
+{
+  "common": { "appName": "Admin", "breadcrumbs": "Breadcrumbs", "requestId": "Request ID: {id}" },
+  "tenants": {
+    "title": "Tenants",
+    "tableLabel": "Tenants",
+    "columnName": "Name",
+    "columnStatus": "Status",
+    "status": { "active": "Active", "suspended": "Suspended" },
+    "emptyTitle": "No tenants",
+    "emptyDescription": "No tenant matches this view.",
+    "next": "Next page",
+    "detailTitle": "Tenant",
+    "createdAt": "Created"
+  },
+  "errors": {
+    "forbiddenTitle": "You do not have access",
+    "forbiddenBody": "Your account lacks the permission tenants.read. Ask an administrator for access.",
+    "notFoundTitle": "Tenant not found",
+    "notFoundBody": "No tenant has this ID. Check the link or go back to the list.",
+    "unavailableTitle": "Tenants are unavailable",
+    "unavailableBody": "The tenants service did not respond. Try again in a moment.",
+    "retry": "Try again",
+    "backToList": "Back to tenants"
+  }
+}

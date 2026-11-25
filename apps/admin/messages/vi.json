@@ -1,0 +1,25 @@
+{
+  "common": { "appName": "Quản trị", "breadcrumbs": "Đường dẫn", "requestId": "Mã yêu cầu: {id}" },
+  "tenants": {
+    "title": "Tenant",
+    "tableLabel": "Danh sách tenant",
+    "columnName": "Tên",
+    "columnStatus": "Trạng thái",
+    "status": { "active": "Đang hoạt động", "suspended": "Tạm ngưng" },
+    "emptyTitle": "Chưa có tenant",
+    "emptyDescription": "Không có tenant nào trong chế độ xem này.",
+    "next": "Trang sau",
+    "detailTitle": "Tenant",
+    "createdAt": "Ngày tạo"
+  },
+  "errors": {
+    "forbiddenTitle": "Bạn không có quyền truy cập",
+    "forbiddenBody": "Tài khoản của bạn thiếu quyền tenants.read. Hãy liên hệ quản trị viên để được cấp quyền.",
+    "notFoundTitle": "Không tìm thấy tenant",
+    "notFoundBody": "Không có tenant nào có mã này. Kiểm tra lại liên kết hoặc quay về danh sách.",
+    "unavailableTitle": "Không tải được danh sách tenant",
+    "unavailableBody": "Dịch vụ tenant không phản hồi. Vui lòng thử lại sau.",
+    "retry": "Thử lại",
+    "backToList": "Quay về danh sách tenant"
+  }
+}
