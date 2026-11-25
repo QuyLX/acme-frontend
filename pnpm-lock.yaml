@@ -186,8 +186,8 @@ importers:
   .:
     devDependencies:
       '@acme/presets':
-        specifier: github:QuyLX/acme-policy#02c4daafcba6dcaea73297f8eb558a169ff7e88f&path:presets
-        version: https://codeload.github.com/QuyLX/acme-policy/tar.gz/02c4daafcba6dcaea73297f8eb558a169ff7e88f#path:presets(@babel/core@7.29.13(supports-color@7.2.0))(@babel/traverse@7.29.15(supports-color@7.2.0))(@opentelemetry/api@1.10.0)(@swc/core@1.16.22(@swc/helpers@0.5.23))(@types/node@26.6.6)(@typescript-eslint/parser@8.74.0(eslint@10.15.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(babel-plugin-macros@3.1.0)(jiti@2.7.0)(supports-color@7.2.0)
+        specifier: file:.factory/kit/acme-presets-54e77a57d623e98a0d56c7a2d36315ba8f7d3592.tgz
+        version: file:.factory/kit/acme-presets-54e77a57d623e98a0d56c7a2d36315ba8f7d3592.tgz(@babel/core@7.29.13(supports-color@7.2.0))(@babel/traverse@7.29.15(supports-color@7.2.0))(@opentelemetry/api@1.10.0)(@swc/core@1.16.22(@swc/helpers@0.5.23))(@types/node@26.6.6)(@typescript-eslint/parser@8.74.0(eslint@10.15.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(babel-plugin-macros@3.1.0)(jiti@2.7.0)(supports-color@7.2.0)
       '@platform/factory-cli':
         specifier: workspace:*
         version: link:packages/factory-cli
@@ -665,8 +665,8 @@ importers:
 
 packages:
 
-  '@acme/presets@https://codeload.github.com/QuyLX/acme-policy/tar.gz/02c4daafcba6dcaea73297f8eb558a169ff7e88f#path:presets':
-    resolution: {gitHosted: true, integrity: sha512-niv5EPjlLJNHfh9axYHdPeu3dzGB9NbDQAbR2AE+6ULmayB8UHuzOiIxyO8pJ872PeW7XLHNL+SLcsBBJAeMAw==, path: presets, tarball: https://codeload.github.com/QuyLX/acme-policy/tar.gz/02c4daafcba6dcaea73297f8eb558a169ff7e88f}
+  '@acme/presets@file:.factory/kit/acme-presets-54e77a57d623e98a0d56c7a2d36315ba8f7d3592.tgz':
+    resolution: {integrity: sha512-iAQD8sT8Rnj2MLeNZLh4eyjdl66Lpj9UCvSc9t4SQcd6vb1Fj02vEdNvOyuEyym5L8rXP4ccbc7UspfKuJLm4g==, tarball: file:.factory/kit/acme-presets-54e77a57d623e98a0d56c7a2d36315ba8f7d3592.tgz}
     version: 1.0.0
 
   '@adobe/css-tools@4.5.0':
@@ -5589,7 +5589,7 @@ packages:
 
 snapshots:
 
-  '@acme/presets@https://codeload.github.com/QuyLX/acme-policy/tar.gz/02c4daafcba6dcaea73297f8eb558a169ff7e88f#path:presets(@babel/core@7.29.13(supports-color@7.2.0))(@babel/traverse@7.29.15(supports-color@7.2.0))(@opentelemetry/api@1.10.0)(@swc/core@1.16.22(@swc/helpers@0.5.23))(@types/node@26.6.6)(@typescript-eslint/parser@8.74.0(eslint@10.15.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(babel-plugin-macros@3.1.0)(jiti@2.7.0)(supports-color@7.2.0)':
+  '@acme/presets@file:.factory/kit/acme-presets-54e77a57d623e98a0d56c7a2d36315ba8f7d3592.tgz(@babel/core@7.29.13(supports-color@7.2.0))(@babel/traverse@7.29.15(supports-color@7.2.0))(@opentelemetry/api@1.10.0)(@swc/core@1.16.22(@swc/helpers@0.5.23))(@types/node@26.6.6)(@typescript-eslint/parser@8.74.0(eslint@10.15.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(babel-plugin-macros@3.1.0)(jiti@2.7.0)(supports-color@7.2.0)':
     dependencies:
       '@nx/eslint-plugin': 24.0.6(@babel/traverse@7.29.15(supports-color@7.2.0))(@swc/core@1.16.22(@swc/helpers@0.5.23))(@typescript-eslint/parser@8.74.0(eslint@10.15.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@10.15.0(jiti@2.7.0)(supports-color@7.2.0))(nx@24.0.6(@swc/core@1.16.22(@swc/helpers@0.5.23)))(supports-color@7.2.0)(typescript@6.0.3)
       esbuild: 0.28.2
