@@ -13,6 +13,8 @@ paths:
       x-scenarios:
         default: { status: 200, body: { items: [{ id: 0b9e2f4c-1d1a-4a49-9a51-2f2c3d6e7a10, name: Northwind Synthetic, status: active, createdAt: '2026-01-15T09:00:00Z' }], nextCursor: null } }
         empty: { status: 200, body: { items: [], nextCursor: null } }
+        firstPage: { status: 200, body: { items: [{ id: 0b9e2f4c-1d1a-4a49-9a51-2f2c3d6e7a10, name: Northwind Synthetic, status: active, createdAt: '2026-01-15T09:00:00Z' }], nextCursor: page-2 } }
+        secondPage: { status: 200, body: { items: [{ id: 7c4d2e1f-3a5b-4c6d-8e9f-0a1b2c3d4e5f, name: Contoso Synthetic, status: suspended, createdAt: '2026-02-20T10:30:00Z' }], nextCursor: null } }
   /v1/tenants/{tenantId}:
     get:
       operationId: getTenant
