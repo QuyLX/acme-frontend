@@ -33,10 +33,16 @@
   "createServiceFetch": {
     "kind": "value"
   },
+  "createTestPermissionSource": {
+    "kind": "value"
+  },
   "createTestSessionProvider": {
     "kind": "value"
   },
   "defineMutation": {
+    "kind": "value"
+  },
+  "ForbiddenError": {
     "kind": "value"
   },
   "MutationDeps": {
@@ -54,6 +60,10 @@
     "kind": "type",
     "type": "Operation"
   },
+  "PermissionSource": {
+    "kind": "type",
+    "type": "PermissionSource"
+  },
   "Problem": {
     "kind": "type",
     "type": "Problem"
@@ -61,6 +71,9 @@
   "RequestContext": {
     "kind": "type",
     "type": "RequestContext"
+  },
+  "requirePermission": {
+    "kind": "value"
   },
   "ServiceCall": {
     "kind": "type",

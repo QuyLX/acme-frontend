@@ -4,6 +4,8 @@ import 'server-only';
 
 export { contextFromSession, createTestSessionProvider, newRequestId } from './context';
 export type { Actor, RequestContext, Session, SessionProvider } from './context';
+export { createTestPermissionSource, ForbiddenError, requirePermission } from './authz';
+export type { PermissionSource } from './authz';
 export { CircuitOpenError, ServiceError } from './errors';
 export type { Problem } from './errors';
 export { createBreaker } from './breaker';
