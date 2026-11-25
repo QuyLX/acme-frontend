@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next';
+import createNextIntlPlugin from 'next-intl/plugin';
 
 const config: NextConfig = {
   reactStrictMode: true,
@@ -6,4 +7,4 @@ const config: NextConfig = {
   transpilePackages: ['@platform/ds-react', '@platform/ds-icons'],
 };
 
-export default config;
+export default createNextIntlPlugin('./src/i18n/request.ts')(config);
