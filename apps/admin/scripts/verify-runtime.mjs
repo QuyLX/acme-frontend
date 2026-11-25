@@ -21,6 +21,46 @@ if (guard.status === 0 || !/ADMIN_SESSION_MODE=fixture/.test(`${guard.stdout}${g
   process.exit(1);
 }
 
+// Start-time guard (FL1-3): build once without fixture mode, then a production server in fixture mode must refuse to start.
+const clean = spawnSync('pnpm', ['exec', 'next', 'build'], { cwd: app, encoding: 'utf8', env: { ...process.env, NODE_ENV: 'production', ADMIN_SESSION_MODE: '' } });
+if (clean.status !== 0) {
+  console.error(`verify:runtime: production build without fixture mode failed\n${clean.stdout}${clean.stderr}`);
+  process.exit(1);
+}
+// Next 16.4 keeps the process alive when register() throws and answers every request with 500, so accept either an
+// exit with a non-zero code or: the message naming the variable is printed and no request is served successfully.
+const startGuard = await new Promise((resolve) => {
+  const child = spawn('pnpm', ['exec', 'next', 'start', '--port', '3021'], {
+    cwd: app,
+    detached: true,
+    env: { ...process.env, NODE_ENV: 'production', ADMIN_SESSION_MODE: 'fixture', TENANTS_BASE_URL: 'http://127.0.0.1:3099' },
+    stdio: ['ignore', 'pipe', 'pipe'],
+  });
+  let out = '';
+  let done = false;
+  const finish = (value) => {
+    if (done) return;
+    done = true;
+    clearTimeout(timer);
+    clearInterval(poll);
+    try { process.kill(-child.pid, 'SIGKILL'); } catch {}
+    resolve({ ...value, out });
+  };
+  const timer = setTimeout(() => finish({ ok: false, why: 'timed out without the guard message' }), 30000);
+  child.stdout.on('data', (d) => { out += d; });
+  child.stderr.on('data', (d) => { out += d; });
+  child.on('exit', (code) => finish({ ok: code !== 0, why: `exited with code ${code}` }));
+  const poll = setInterval(async () => {
+    if (!/ADMIN_SESSION_MODE=fixture/.test(out)) return;
+    const res = await fetch('http://127.0.0.1:3021/tenants', { headers: { cookie: 'fixture_persona=staff' }, redirect: 'manual' }).catch(() => null);
+    finish({ ok: !res || res.status >= 500, why: `still running; /tenants answered ${res?.status}` });
+  }, 500);
+});
+if (!startGuard.ok || !/ADMIN_SESSION_MODE=fixture/.test(startGuard.out)) {
+  console.error(`verify:runtime: production server in fixture mode was not refused, or the message did not name the variable (FL1-3): ${startGuard.why}\n${startGuard.out}`);
+  process.exit(1);
+}
+
 const fixture = spawn(node, [...nodeOpts, 'scripts/fixture-server.ts'], {
   cwd: app,
   env: { ...process.env, TENANTS_FIXTURE_PORT: '3099' },
@@ -72,6 +112,8 @@ try {
   // Visible text only: `next dev` serialises the error message into the RSC payload (scripts) by design; production redacts it.
   const visible = broken.html.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<[^>]+>/g, ' ');
   if (broken.status === 200 || /Unavailable|503/.test(visible)) fail('upstream failure not surfaced as an error, or its text leaks into the page (FL4-4)');
+  const malformed = await get('/tenants/not-a-uuid', 'staff');
+  if (malformed.status !== 404) fail(`malformed id returned ${malformed.status}, expected 404`);
   const detail = await get('/tenants/0b9e2f4c-1d1a-4a49-9a51-2f2c3d6e7a10', 'staff');
   if (detail.status !== 200 || !detail.html.includes('Northwind Synthetic')) fail('detail did not render');
   const root = await get('/', 'staff');
